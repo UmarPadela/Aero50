@@ -1,0 +1,62 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Favorites
+{% endblock %}
+
+{% block main %}
+    <main>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Airfoil</th>
+                    <th>Method</th>
+                    <th>Variable</th>
+                    <th>Reynolds Number</th>
+                    <th>Mach Number</th>
+                    <th>Time</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for analysis in data %}
+                <tr>
+                    <td>NACA{{ analysis.airfoil }}</td>
+                    <td>{{ analysis.method }}</td>
+                    <td>{{ analysis.variable }}</td>
+                    <td>{{ analysis.re }}</td>
+                    <td>{{ analysis.mach }}</td>
+                    <td>{{ analysis.time }}</td>
+                    <td>
+                        <form action="/analyze" method="post">
+                            <input type="hidden" name="airfoil" value="{{ analysis.airfoil }}">
+                            {% if analysis.variable == "Angle of Attack" %}
+                                <input type="hidden" name="variable" value="alpha">
+                                <input type="hidden" name="alpha_i" value="{{ analysis.start }}">
+                                <input type="hidden" name="alpha_f" value="{{ analysis.end }}">
+                                <input type="hidden" name="alpha_step" value="{{ analysis.step }}">
+                            {% elif analysis.variable == "Coefficient of Lift" %}
+                                <input type="hidden" name="variable" value="cl">
+                                <input type="hidden" name="cl_i" value="{{ analysis.start }}">
+                                <input type="hidden" name="cl_f" value="{{ analysis.end }}">
+                                <input type="hidden" name="cl_step" value="{{ analysis.step }}">
+                            {% endif %}
+
+                            {% if analysis.method == "Inviscid" %}
+                                <input type="hidden" name="method" value="inv">
+                            {% elif analysis.variable == "Coefficient of Lift" %}
+                                <input type="hidden" name="method" value="visc">
+                                <input type="hidden" name="re" value="{{ analysis.re }}">
+                                <input type="hidden" name="mach" value="{{ analysis.mach }}">
+                            {% endif %}
+                            <input type="hidden" name="max_iter" value="{{ analysis.max_iter }}">
+                            
+                            <button class="btn btn-primary" type="submit">View Results</button>
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </main>
+{% endblock %}

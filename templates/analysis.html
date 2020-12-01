@@ -1,0 +1,46 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Results
+{% endblock %}
+
+
+{% block main %}
+<h2>
+    {{ data[0].method }} Analysis for NACA{{ data[0].airfoil }} Airfoil 
+<h3>
+    {% if data.method=="Viscous" %}
+        Reynold's Number={{ data[0].re }}, Mach Number={{ data[0].mach }}
+    {% endif %}
+</h3>
+
+
+
+<div>
+    <img src="./../static/plots/{{ data[0].id }}/lift_curve.png" alt="lift curve">
+</div>
+
+<div>
+    <img src="./../static/plots/{{ data[0].id }}/drag_polar.png" alt="drag polar">
+</div>
+
+<div>
+    <img src="./../static/plots/{{ data[0].id }}/pressure_curve.png" alt="pressure curve">
+</div>
+
+<div>
+    <img src="./../static/plots/{{ data[0].id }}/pressure_distribution.png" alt="pressure distribution">
+</div>
+
+<div>
+    <img src="./../static/plots/{{ data[0].id }}/moment_curve.png" alt="moment curve">
+</div>
+
+<form action="/" method="post">
+    <input type="hidden" name="analysis_id" value="{{ data[0].analysis_id }}">
+    <button class="btn btn-primary" type="submit">Save to Favorites</button>
+</form>
+
+
+
+{% endblock %}

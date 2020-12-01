@@ -1,0 +1,122 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Analyze
+{% endblock %}
+
+{% block head_code %}   
+    <script>
+    $(document).ready(function() {
+        
+        $(document).ready(function() 
+        {
+            $("#alpha_input").hide();
+            $("#cl_input").hide();
+            $("#visc_input").hide();
+        });
+
+        $("#variable").on("input", function() 
+        {
+            if($(this).val()=="alpha") 
+            {
+                $("#alpha_input").show();
+                $("#cl_input").hide();
+            }
+            else 
+            {
+                $("#cl_input").show();
+                $("#alpha_input").hide();
+            }
+        });
+
+        $("#method").on("input", function() 
+        {
+            if($(this).val()=="inv") 
+            {
+                $("#visc_input").hide();
+            }
+            else 
+            {
+                $("#visc_input").show();
+            }
+        });
+    }); 
+    </script>
+{% endblock %}
+
+
+{% block main %}
+
+        <form action="/analyze" method="post">
+            <div class="form-group">
+                <input autocomplete="off" autofocus class="form-control" name="airfoil" placeholder="NACA Airfoil Number" type="number">
+            </div>
+            <div class="form-group">
+                <select class="form-control" id ="variable" name="variable">
+                    <option disabled selected value="">Independent Variable</option>
+                    <option value="alpha">Angle of Attack</option>
+                    <option value="cl">Coefficient of Lift</option>
+                </select>
+            </div>
+            
+            <div id="alpha_input">
+                <div class="form-group">
+                    <input class="form-control" name="alpha_i" placeholder="Starting Angle of Attack" type="number" step="0.1">
+                </div>
+                <div class="form-group">
+                    <input class="form-control" name="alpha_f" placeholder="Ending Angle of Attack" type="number" step="0.1">
+                </div>
+                <div class="form-group">
+                    <input class="form-control" name="alpha_step" placeholder="Step for Angle of Attack" type="number" step="0.05">
+                </div>
+            </div>
+            
+            <div id="cl_input">
+                <div class="form-group">
+                    <input class="form-control" name="cl_i" placeholder="Starting Coefficient of Lift" type="number" step="0.1">
+                </div>
+                <div class="form-group">
+                    <input class="form-control" name="cl_f" placeholder="Ending Coefficient of Lift" type="number" step="0.1">
+                </div>
+                <div class="form-group">
+                    <input class="form-control" name="cl_step" placeholder="Step for Coefficient of Lift" type="number" step="0.05">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <select class="form-control" id ="method" name="method">
+                    <option disabled selected value="">Analysis Method</option>
+                    <option value="inv">Inviscid</option>
+                    <option value="visc">Viscous</option>
+                </select>
+            </div>
+
+            <div id="visc_input">
+                <div class="form-group">
+                    <input class="form-control" name="re" placeholder="Reynolds Number" type="number">
+                </div>
+                <div class="form-group">
+                    <input class="form-control" name="mach" placeholder="Mach Number" type="number" step="0.1">
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                <input autocomplete="off" autofocus class="form-control" name="max_iter" placeholder="Max Iterations" type="number">
+            </div>
+
+
+            
+    
+            <button class="btn btn-primary" type="submit">Analyze</button>
+        </form>
+        
+      
+        
+      
+        
+        
+
+        
+{% endblock %}
+

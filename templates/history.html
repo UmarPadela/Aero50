@@ -1,0 +1,35 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    History
+{% endblock %}
+
+
+{% block main %}
+    <main>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Airfoil</th>
+                    <th>Method</th>
+                    <th>Variable</th>
+                    <th>Reynolds Number</th>
+                    <th>Mach Number</th>
+                    <th>Time</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for analysis in data %}
+                <tr>
+                    <td>NACA{{ analysis.airfoil }}</td>
+                    <td>{{ analysis.method }}</td>
+                    <td>{{ analysis.variable }}</td>
+                    <td>{{ analysis.re }}</td>
+                    <td>{{ analysis.mach }}</td>
+                    <td>{{ analysis.time }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </main>
+{% endblock %}

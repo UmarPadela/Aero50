@@ -44,7 +44,7 @@
 
                             {% if analysis.method == "Inviscid" %}
                                 <input type="hidden" name="method" value="inv">
-                            {% elif analysis.variable == "Coefficient of Lift" %}
+                            {% elif analysis.method == "Viscous" %}
                                 <input type="hidden" name="method" value="visc">
                                 <input type="hidden" name="re" value="{{ analysis.re }}">
                                 <input type="hidden" name="mach" value="{{ analysis.mach }}">

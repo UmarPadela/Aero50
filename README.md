@@ -73,4 +73,4 @@ Analysis Method: Inviscid
 Max Iterations: 100
 ```
 
-The code will take a few seconds to run, and you will get an output with a lift curve, drag polar, minimum pressure curve, pressure distribution, and pitching moment curve. If you like the analysis, you can save it to your favorites by clicking the button "save to favorites" and the bottom of the page. This will bring you to your favorites page, where you can view your analyses and click buttons to see their plots. The history tab shows all of your analyses, but does not save your plots. 
+The code will take a few seconds to run, and you will get an output with a lift curve, drag polar, minimum pressure curve, pressure distribution, and pitching moment curve. If you like the analysis, you can save it to your favorites by clicking the button "save to favorites" at the bottom of the page. This will bring you to your favorites page, where you can view your analyses and click buttons to see their plots. The history tab shows all of your analyses, but does not save your plots. 

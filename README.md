@@ -34,7 +34,7 @@ pip install Flask
 in the command line. Finally, the code uses a Python implementation of XFOIL. This can be installed using
 
 ```
-pip install pip install xfoil
+pip install xfoil
 (https://pypi.org/project/xfoil/)
 ```
 

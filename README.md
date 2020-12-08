@@ -1,5 +1,6 @@
 This is my final project for CS50. It is an airfoil analysis tool.
-
+Video:
+https://youtu.be/k2RsEiC_zo0
 
 ## INSTALLATION:
 

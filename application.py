@@ -49,7 +49,7 @@ def index():
         return render_template("index.html", data=data)
 
 
-    
+   
 
 
 @app.route("/history")
